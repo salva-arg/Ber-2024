@@ -25,19 +25,22 @@
     <div id="viewer-container"></div>
 
     <script>
-        // Inicializar Mol* y cargar la estructura
-        const viewer = new Molstar.Viewer('viewer-container', {
-            backgroundColor: 'white',
-            theme: 'light', // Puedes cambiar a 'dark' si lo prefieres
-            showSequence: true,
-        });
+        // Asegúrate de que Mol* esté cargado correctamente antes de utilizarlo
+        window.onload = () => {
+            // Inicializar Mol* y cargar la estructura
+            const viewer = new Molstar.Viewer('viewer-container', {
+                backgroundColor: 'white',
+                theme: 'light', // Cambiar a 'dark' si prefieres un fondo oscuro
+                showSequence: true,
+            });
 
-        // Cargar el archivo PDB
-        const pdbUrl = 'https://raw.githubusercontent.com/salva-arg/Ber-2024/refs/heads/main/c2_2.pdb';
+            // Cargar el archivo PDB
+            const pdbUrl = 'https://raw.githubusercontent.com/salva-arg/Ber-2024/refs/heads/main/c2_2.pdb';
 
-        viewer.loadStructureFromUrl(pdbUrl).catch(err => {
-            console.error("Error al cargar la estructura:", err);
-        });
+            viewer.loadStructureFromUrl(pdbUrl).catch(err => {
+                console.error("Error al cargar la estructura:", err);
+            });
+        };
     </script>
 
 </body>
