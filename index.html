@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizador de Moléculas con Mol*</title>
-    
-    <!-- Agregar el enlace CDN de Mol* -->
-    <script type="module">
-        import { createViewer } from 'https://cdn.jsdelivr.net/npm/molstar@2.0.0/dist/molstar.min.js';
-    </script>
-    
+    <title>Visualizador Mol* de Proteínas</title>
+
+    <!-- Cargar Mol* desde el CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/molstar@2.0.0/dist/molstar.min.js"></script>
+
     <style>
-        /* Asegúrate de que el contenedor del visualizador ocupe el espacio completo y tenga un tamaño adecuado */
+        /* Estilo del contenedor del visualizador */
         #viewer-container {
             width: 100%;
             height: 600px;
@@ -22,20 +20,24 @@
 <body>
 
     <h1>Visualizador Mol* de Proteínas</h1>
-    
+
     <!-- Contenedor para el visualizador Mol* -->
     <div id="viewer-container"></div>
-    
-    <script type="module">
-        // Configuración de Mol* para cargar una estructura en formato PDB
-        const viewer = createViewer('viewer-container', {
+
+    <script>
+        // Inicializar Mol* y cargar la estructura
+        const viewer = new Molstar.Viewer('viewer-container', {
             backgroundColor: 'white',
-            theme: 'light', // Puedes cambiar entre 'light' o 'dark' según prefieras
-            showSequence: true, // Mostrar la secuencia de la proteína
+            theme: 'light', // Puedes cambiar a 'dark' si lo prefieres
+            showSequence: true,
         });
-        
-        // Cargar la proteína desde un archivo PDB (reemplaza con la URL de tu archivo PDB)
-        viewer.loadStructureFromUrl('https://raw.githubusercontent.com/salva-arg/Ber-2024/refs/heads/main/c2_2.pdb');
+
+        // Cargar el archivo PDB
+        const pdbUrl = 'https://raw.githubusercontent.com/salva-arg/Ber-2024/refs/heads/main/c2_2.pdb';
+
+        viewer.loadStructureFromUrl(pdbUrl).catch(err => {
+            console.error("Error al cargar la estructura:", err);
+        });
     </script>
 
 </body>
